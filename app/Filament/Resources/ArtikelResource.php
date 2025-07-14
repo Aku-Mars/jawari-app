@@ -46,10 +46,14 @@ class ArtikelResource extends Resource
                     ->required(),
 
                 FileUpload::make('file_path')
-                    ->label('Lampiran File')
+                    ->label('Lampiran Gambar atau Video')
                     ->directory('artikel-files')
-                    ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                    ->acceptedFileTypes([
+                        'image/*',
+                        'video/*',
+                    ])
                     ->nullable(),
+
 
                 TextInput::make('link_youtube')
                     ->label('Link YouTube')
