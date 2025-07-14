@@ -14,7 +14,6 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Artikel::class);
         $artikel = Artikel::latest()->paginate(10);
         return view ('artikel.index', compact('artikel'));
     }

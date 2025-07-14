@@ -8,7 +8,7 @@ use App\Models\User;
 class ArtikelPolicy
 {
     /**
-     * Semua user yang login boleh melihat daftar artikel
+     * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
@@ -16,7 +16,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Semua user yang login boleh melihat artikel
+     * Determine whether the user can view the model.
      */
     public function view(User $user, Artikel $artikel): bool
     {
@@ -24,7 +24,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Semua user yang login boleh membuat artikel
+     * Determine whether the user can create models.
      */
     public function create(User $user): bool
     {
@@ -32,15 +32,15 @@ class ArtikelPolicy
     }
 
     /**
-     * Hanya user yang memiliki artikel yang bisa mengedit
+     * Determine whether the user can update the model.
      */
     public function update(User $user, Artikel $artikel): bool
     {
-        return $user->id === $artikel->user_id;
+        return true;
     }
 
     /**
-     * Hanya user yang memiliki artikel yang bisa menghapus
+     * Determine whether the user can delete the model.
      */
     public function delete(User $user, Artikel $artikel): bool
     {
@@ -48,7 +48,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Tidak mengizinkan restore
+     * Determine whether the user can restore the model.
      */
     public function restore(User $user, Artikel $artikel): bool
     {
@@ -56,7 +56,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Tidak mengizinkan force delete
+     * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user, Artikel $artikel): bool
     {

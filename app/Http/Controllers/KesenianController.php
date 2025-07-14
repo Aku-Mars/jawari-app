@@ -14,7 +14,6 @@ class KesenianController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Kesenian::class);
         $kesenian = Kesenian::latest()->paginate(10);
         return view('kesenian.index', compact('kesenian'));
     }
