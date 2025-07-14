@@ -1,4 +1,4 @@
-<div class="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+<div class="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
     <img src="{{ asset('assets/visi-misi-header-image.jpg') }}" alt="Visi Misi"
         class="absolute inset-0 w-full h-full object-cover object-center" />
 
