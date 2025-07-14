@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\KesenianController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // dynamic pages - WIP (article and gallery from DB)
@@ -21,3 +26,15 @@ Route::get('/galeri', function () {
 Route::get('/artikel', function () {
     return view('pages.artikel');
 });
+
+Route::resource('artikel', ArtikelController::class);
+Route::resource('galeri', GaleriController::class);
+Route::resource('kesenian', KesenianController::class);
+Route::resource('users', UserController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
