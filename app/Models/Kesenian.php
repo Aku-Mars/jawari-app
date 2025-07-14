@@ -21,6 +21,7 @@ class Kesenian extends Model
         'user_id',
         'judul',
         'sub_judul',
+        'views',
         'deskripsi',
         'banner_image',
         'link_youtube',

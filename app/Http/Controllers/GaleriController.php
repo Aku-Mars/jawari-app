@@ -98,6 +98,8 @@ class GaleriController extends Controller
      */
     public function destroy(Galeri $galeri)
     {
+        $this->authorize('delete', $galeri);
+        
         if ($galeri->file_path) {
             Storage::disk('public')->delete($galeri->file_path);
         }

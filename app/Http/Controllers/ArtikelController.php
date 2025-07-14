@@ -111,12 +111,16 @@ class ArtikelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Artikel $artikel)
+        public function destroy(Artikel $artikel)
     {
+        $this->authorize('delete', $artikel);
+
         if ($artikel->file_path) {
             Storage::disk('public')->delete($artikel->file_path);
         }
+
         $artikel->delete();
+
         return redirect()->route('artikel.index')->with('success', 'Artikel berhasil dihapus');
     }
 }

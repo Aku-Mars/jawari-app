@@ -17,7 +17,7 @@ Route::get('/galeri', function () {
     return view('pages.galeri');
 });
 
-// dynamic pages - WIP 
+// dynamic pages - WIP
 Route::get('/artikel', function () {
     return view('pages.artikel');
 });
