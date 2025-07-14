@@ -22,12 +22,11 @@
 </head>
 
 <body class="font-sans antialiased scroll-smooth">
-
-    @livewire('navigation.navbar', ['activeLink' => $activeLink ?? 'Beranda'])
+    @livewire('components.navbar', ['activeLink' => trim($__env->yieldContent('activeLink'))])
 
     @yield('content')
 
-    @livewire('home.footer')
+    @livewire('components.footer')
 
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

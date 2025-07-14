@@ -12,10 +12,8 @@
             <p class="text-base md:text-xl mb-8">
                 Menelusuri makna dan keanggunan dalam setiap langkah tarian tradisional yang mempesona.
             </p>
-            <a href="#"
-                class="inline-block bg-primary hover:bg-secondary text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg">
-                Jelajahi Sekarang
-            </a>
+            <livewire:components.button label="Jelajahi Sekarang" href="#" size="lg" variant="primary"
+                class="py-3 px-8" />
         </div>
     </div>
 </div>

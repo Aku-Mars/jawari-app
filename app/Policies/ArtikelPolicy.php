@@ -4,12 +4,11 @@ namespace App\Policies;
 
 use App\Models\Artikel;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class ArtikelPolicy
 {
     /**
-     * Determine whether the user can view any models.
+     * Semua user yang login boleh melihat daftar artikel
      */
     public function viewAny(User $user): bool
     {
@@ -17,7 +16,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Semua user yang login boleh melihat artikel
      */
     public function view(User $user, Artikel $artikel): bool
     {
@@ -25,7 +24,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Semua user yang login boleh membuat artikel
      */
     public function create(User $user): bool
     {
@@ -33,15 +32,15 @@ class ArtikelPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Hanya user yang memiliki artikel yang bisa mengedit
      */
     public function update(User $user, Artikel $artikel): bool
     {
-        return true;
+        return $user->id === $artikel->user_id;
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Hanya user yang memiliki artikel yang bisa menghapus
      */
     public function delete(User $user, Artikel $artikel): bool
     {
@@ -49,7 +48,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Tidak mengizinkan restore
      */
     public function restore(User $user, Artikel $artikel): bool
     {
@@ -57,7 +56,7 @@ class ArtikelPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Tidak mengizinkan force delete
      */
     public function forceDelete(User $user, Artikel $artikel): bool
     {

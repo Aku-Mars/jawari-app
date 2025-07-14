@@ -21,10 +21,7 @@
                     class="w-[320px] h-[320px] object-contain">
             </div>
 
-            <a href="#"
-                class="absolute -bottom-3 -right-3 bg-primary hover:bg-secondary text-white text-sm font-semibold rounded-full shadow transition duration-300 ease-in-out px-6 py-3">
-                Sejarah Kesenian
-            </a>
+            <livewire:components.button label="Sejarah Kesenian" href="#" size="md" variant="primary"
+                class="py-3 px-8 absolute -bottom-3 -right-3" />
         </div>
-    </div>
 </section>
