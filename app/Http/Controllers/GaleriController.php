@@ -14,6 +14,7 @@ class GaleriController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Galeri::class);
         $galeri = Galeri::latest()->paginate(10);
         return view ('galeri.index', compact('galeri'));
     }
@@ -23,6 +24,7 @@ class GaleriController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Galeri::class);
         return view('galeri.create');
     }
 
@@ -31,6 +33,7 @@ class GaleriController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Galeri::class);
         $request->validate([
             'file_path'       => 'required|file|mimes:jpg,jpeg,png,mp4|max:2048',
             'deskripsi'       => 'required|string',
@@ -54,6 +57,7 @@ class GaleriController extends Controller
      */
     public function show(Galeri $galeri)
     {
+        $this->authorize('view', $galeri);
         return view('galeri.show', compact('galeri'));
     }
 
@@ -62,6 +66,7 @@ class GaleriController extends Controller
      */
     public function edit(Galeri $galeri)
     {
+        $this->authorize('update', $galeri);
         return view('galeri.edit', compact('galeri'));
     }
 
@@ -70,6 +75,7 @@ class GaleriController extends Controller
      */
     public function update(Request $request, Galeri $galeri)
     {
+        $this->authorize('update', $galeri);
         $request->validate([
             'file_path'         => 'nullable|file|mimes:jpg,jpeg,png,mp4|max:2048',
             'deskripsi'         => 'required|string',

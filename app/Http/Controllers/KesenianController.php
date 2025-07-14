@@ -14,6 +14,7 @@ class KesenianController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Kesenian::class);
         $kesenian = Kesenian::latest()->paginate(10);
         return view('kesenian.index', compact('kesenian'));
     }
@@ -23,6 +24,7 @@ class KesenianController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Kesenian::class);
         return view('kesenian.create');
     }
 
@@ -31,6 +33,7 @@ class KesenianController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Kesenian::class);
         $request->validate([
             'judul'         => 'required|string|max:100',
             'sub_judul'     => 'required|string|max:100',
@@ -65,6 +68,7 @@ class KesenianController extends Controller
      */
     public function show(Kesenian $kesenian)
     {
+        $this->authorize('view', $kesenian);
         return view('kesenian.show', compact('kesenian'));
     }
 
@@ -73,6 +77,7 @@ class KesenianController extends Controller
      */
     public function edit(Kesenian $kesenian)
     {
+        $this->authorize('update', $kesenian);
         return view('kesenian.edit', compact('kesenian'));
     }
 
@@ -81,6 +86,7 @@ class KesenianController extends Controller
      */
     public function update(Request $request, Kesenian $kesenian)
     {
+        $this->authorize('update', $kesenian);
         $request->validate([
             'judul'         => 'required|string|max:100',
             'sub_judul'     => 'required|string|max:100',

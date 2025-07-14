@@ -14,6 +14,7 @@ class ArtikelController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Artikel::class);
         $artikel = Artikel::latest()->paginate(10);
         return view ('artikel.index', compact('artikel'));
     }
@@ -23,6 +24,7 @@ class ArtikelController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Artikel::class);
         return view ('artikel.create');
     }
 
@@ -31,6 +33,7 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Artikel::class);
         $request->validate([
             'judul'        => 'required|string|max:100',
             'penulis'      => 'required|string|max:100',
@@ -63,6 +66,7 @@ class ArtikelController extends Controller
      */
     public function show(Artikel $artikel)
     {
+        $this->authorize('view', $artikel);
         return view('artikel.show', compact('artikel'));
     }
 
@@ -71,6 +75,7 @@ class ArtikelController extends Controller
      */
     public function edit(Artikel $artikel)
     {
+        $this->authorize('update', $artikel);
         return view('artikel.edit', compact('artikel'));
     }
 
@@ -79,6 +84,7 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, Artikel $artikel)
     {
+        $this->authorize('update', $artikel);
         $request->validate([
            'judul'          => 'required|string|max:100',
            'penulis'        => 'required|string|max:100',

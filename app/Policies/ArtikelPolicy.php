@@ -37,6 +37,7 @@ class ArtikelPolicy
     public function update(User $user, Artikel $artikel): bool
     {
         return $user->id === $artikel->user_id;
+
     }
 
     /**
@@ -52,7 +53,7 @@ class ArtikelPolicy
      */
     public function restore(User $user, Artikel $artikel): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -60,6 +61,6 @@ class ArtikelPolicy
      */
     public function forceDelete(User $user, Artikel $artikel): bool
     {
-        return false;
+        return true;
     }
 }

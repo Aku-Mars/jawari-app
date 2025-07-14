@@ -13,7 +13,7 @@ class GaleriPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class GaleriPolicy
      */
     public function view(User $user, Galeri $galeri): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class GaleriPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class GaleriPolicy
      */
     public function update(User $user, Galeri $galeri): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class GaleriPolicy
      */
     public function restore(User $user, Galeri $galeri): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class GaleriPolicy
      */
     public function forceDelete(User $user, Galeri $galeri): bool
     {
-        return false;
+        return true;
     }
 }
