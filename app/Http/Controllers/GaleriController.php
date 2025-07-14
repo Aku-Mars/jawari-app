@@ -56,7 +56,6 @@ class GaleriController extends Controller
      */
     public function show(Galeri $galeri)
     {
-        $this->authorize('view', $galeri);
         return view('galeri.show', compact('galeri'));
     }
 

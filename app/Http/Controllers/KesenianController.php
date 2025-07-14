@@ -67,7 +67,6 @@ class KesenianController extends Controller
      */
     public function show(Kesenian $kesenian)
     {
-        $this->authorize('view', $kesenian);
         return view('kesenian.show', compact('kesenian'));
     }
 
