@@ -37,7 +37,6 @@ class ArtikelPolicy
     public function update(User $user, Artikel $artikel): bool
     {
         return $user->id === $artikel->user_id;
-
     }
 
     /**
