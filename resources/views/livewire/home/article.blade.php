@@ -44,10 +44,8 @@
                 </div>
 
                 <div class="text-center mt-10">
-                    <a href="#"
-                        class="bg-primary hover:bg-red-800 text-white text-sm px-4 py-4 rounded-full transition">
-                        selengkapnya
-                    </a>
+                    <livewire:components.button label="selengkapnya" href="#" size="md" variant="primary"
+                        class="py-3 px-8" />
                 </div>
             </div>
         </section>

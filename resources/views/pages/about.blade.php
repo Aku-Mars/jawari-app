@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('title', 'Visi-Misi - JAWARI')
+@section('activeLink', 'Tentang Kami')
 
-    <title>JAWARI</title>
+@section('content')
 
-    {{-- Fonts --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap"
-        rel="stylesheet">
+    @livewire('about.header')
+    @livewire('about.content')
 
-    <link rel="icon" href="{{ asset('jawari-logo.png') }}" type="image/png">
 
-    {{-- Styles / Scripts --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 
-</head>
-
-<body class="font-sans antialiased scroll-smooth">
-
-    @livewire('navigation.navbar', ['activeLink' => 'Tentang Kami'])
-    @livewire('home.header')
-</body>
-
-</html>
+@endsection()

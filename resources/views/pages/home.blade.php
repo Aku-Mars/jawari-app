@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Beranda - JAWARI')
+@section('activeLink', 'Beranda')
 
 @section('content')
 
