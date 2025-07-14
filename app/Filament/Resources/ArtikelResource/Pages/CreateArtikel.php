@@ -30,7 +30,8 @@ class CreateArtikel extends CreateRecord
             TextInput::make('views')
                 ->numeric()
                 ->default(0)
-                ->required(),
+                ->required()
+                ->disabled(),
 
             FileUpload::make('file_path')
                 ->label('Lampiran File')
