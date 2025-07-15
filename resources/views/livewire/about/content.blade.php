@@ -5,9 +5,7 @@
         <span class="text-gray-700 font-semibold">Visi Misi</span>
     </nav>
 
-    <!-- Flex Row untuk Konten dan Artikel Terbaru -->
     <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Konten Visi Misi -->
         <div class="w-full lg:w-2/3">
             <div class="prose prose-sm md:prose-base lg:prose-lg max-w-none text-gray-800">
                 <h2 class="font-bold my-3 text-3xl">Visi</h2>

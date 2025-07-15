@@ -20,15 +20,15 @@ Route::get('/about', function () {
 // dynamic pages - WIP
 Route::get('/galeri', function () {
     return view('pages.galeri');
-});
+})->name('galeri');
 
 // dynamic pages - WIP
 Route::get('/artikel', function () {
     return view('pages.artikel');
-});
+})->name('artikel');
 
 Route::resource('artikel', ArtikelController::class);
-Route::resource('galeri', GaleriController::class);
+// Route::resource('galeri', GaleriController::class);
 Route::resource('kesenian', KesenianController::class);
 Route::resource('users', UserController::class);
 
@@ -37,4 +37,3 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
