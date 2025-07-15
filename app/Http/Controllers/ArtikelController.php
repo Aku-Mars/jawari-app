@@ -49,7 +49,7 @@ class ArtikelController extends Controller
         Artikel::create([
             'user_id'       => Auth::id(),
             'judul'         => $request->judul,
-            'penulis'       => user(auth->$penulis),
+            'penulis'       => Auth::user()->name,
             'views'         => $request->views,
             'file_path'     => $filePath,
             'link_youtube'  => $request->link_youtube,
@@ -64,6 +64,7 @@ class ArtikelController extends Controller
      */
     public function show(Artikel $artikel)
     {
+        $artikel->increment('views');
         return view('artikel.show', compact('artikel'));
     }
 
@@ -100,7 +101,7 @@ class ArtikelController extends Controller
 
         $artikel->update([
             'judul'         => $request->judul,
-            'penulis'       => user(auth->$penulis),
+            'penulis'       => Auth::user()->name,
             'views'         => $request->views,
             'file_path'     => $filePath,
             'link_youtube'  => $request->link_youtube,
