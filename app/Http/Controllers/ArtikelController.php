@@ -14,7 +14,6 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Artikel::class);
         $artikel = Artikel::latest()->paginate(10);
         return view ('artikel.index', compact('artikel'));
     }
@@ -36,7 +35,6 @@ class ArtikelController extends Controller
         $this->authorize('create', Artikel::class);
         $request->validate([
             'judul'        => 'required|string|max:100',
-            'penulis'      => 'required|string|max:100',
             'views'        => 'required|integer|min:0',
             'file_path'    => 'nullable|file|mimes:jpg,jpeg,png,mp4|max:2048',
             'link_youtube' => 'nullable|url',
@@ -51,7 +49,7 @@ class ArtikelController extends Controller
         Artikel::create([
             'user_id'       => Auth::id(),
             'judul'         => $request->judul,
-            'penulis'       => $request->penulis,
+            'penulis'       => Auth::user()->name,
             'views'         => $request->views,
             'file_path'     => $filePath,
             'link_youtube'  => $request->link_youtube,
@@ -66,7 +64,7 @@ class ArtikelController extends Controller
      */
     public function show(Artikel $artikel)
     {
-        $this->authorize('view', $artikel);
+        $artikel->increment('views');
         return view('artikel.show', compact('artikel'));
     }
 
@@ -87,7 +85,6 @@ class ArtikelController extends Controller
         $this->authorize('update', $artikel);
         $request->validate([
            'judul'          => 'required|string|max:100',
-           'penulis'        => 'required|string|max:100',
            'views'          => 'required|integer|min:0',
            'file_path'      => 'nullable|file|mimes:jpg,jpeg,png,mp4|max:2048',
            'link_youtube'   => 'nullable|url',
@@ -104,7 +101,7 @@ class ArtikelController extends Controller
 
         $artikel->update([
             'judul'         => $request->judul,
-            'penulis'       => $request->penulis,
+            'penulis'       => Auth::user()->name,
             'views'         => $request->views,
             'file_path'     => $filePath,
             'link_youtube'  => $request->link_youtube,

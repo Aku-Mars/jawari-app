@@ -14,7 +14,6 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Galeri::class);
         $galeri = Galeri::latest()->paginate(10);
         return view ('galeri.index', compact('galeri'));
     }
@@ -57,7 +56,6 @@ class GaleriController extends Controller
      */
     public function show(Galeri $galeri)
     {
-        $this->authorize('view', $galeri);
         return view('galeri.show', compact('galeri'));
     }
 
