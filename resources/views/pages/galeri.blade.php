@@ -4,6 +4,10 @@
 @section('activeLink', 'Galeri')
 
 @section('content')
-    @livewire('galeri.header')
+    @livewire('components.header', [
+        'title' => 'Galeri',
+        'subtitle' => 'Mengabadikan budaya lewat sorotan lensa',
+        'imgPath' => asset('assets/header-gallery.png'),
+    ])
     @livewire('galeri.content')
 @endsection()

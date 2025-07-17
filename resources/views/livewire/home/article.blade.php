@@ -9,11 +9,17 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
             @forelse ($articles as $article)
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-                    <img src="{{ $article->file_path ? asset('storage/' . $article->file_path) : asset('assets/article_placeholder.png') }}"
-                        alt="{{ $article->judul }}" class="w-full h-48 object-cover">
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden relative group">
+                    <div class="relative w-full h-48 overflow-hidden">
+                        <img src="{{ $article->file_path ? asset('storage/' . $article->file_path) : asset('assets/article_placeholder.png') }}"
+                            alt="{{ $article->judul }}"
+                            class="w-full h-full object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105" />
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-500 ease-in-out">
+                        </div>
+                    </div>
                     <div class="p-4">
                         <h3 class="font-semibold text-gray-800 text-sm mb-1">
                             {{ $article->judul }}
@@ -22,7 +28,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-gray-600 col-span-3">Belum ada artikel.</p>
+                <p class="text-gray-500 col-span-3 flex justify-center">Belum ada artikel.</p>
             @endforelse
         </div>
 

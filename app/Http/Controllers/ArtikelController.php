@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ArtikelController extends Controller
@@ -15,7 +16,7 @@ class ArtikelController extends Controller
     public function index()
     {
         $artikel = Artikel::latest()->paginate(10);
-        return view ('artikel.index', compact('artikel'));
+        return view('artikel.index', compact('artikel'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ArtikelController extends Controller
     public function create()
     {
         $this->authorize('create', Artikel::class);
-        return view ('artikel.create');
+        return view('artikel.create');
     }
 
     /**
@@ -64,7 +65,16 @@ class ArtikelController extends Controller
      */
     public function show(Artikel $artikel)
     {
-        $artikel->increment('views');
+
+        $ip = request()->ip();
+        $cacheKey = 'viewed_' . $artikel->id . '_' . $ip;
+
+        if (!Cache::has($cacheKey)) {
+            $artikel->increment('views');
+            // views bertambah setelah refresh 15 menit
+            Cache::put($cacheKey, true, now()->addMinutes(15));
+        }
+
         return view('artikel.show', compact('artikel'));
     }
 
@@ -84,11 +94,11 @@ class ArtikelController extends Controller
     {
         $this->authorize('update', $artikel);
         $request->validate([
-           'judul'          => 'required|string|max:100',
-           'views'          => 'required|integer|min:0',
-           'file_path'      => 'nullable|file|mimes:jpg,jpeg,png,mp4|max:2048',
-           'link_youtube'   => 'nullable|url',
-           'deskripsi'      => 'required|string',
+            'judul'          => 'required|string|max:100',
+            'views'          => 'required|integer|min:0',
+            'file_path'      => 'nullable|file|mimes:jpg,jpeg,png,mp4|max:2048',
+            'link_youtube'   => 'nullable|url',
+            'deskripsi'      => 'required|string',
         ]);
 
         $filePath = $artikel->file_path;
@@ -114,7 +124,7 @@ class ArtikelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-        public function destroy(Artikel $artikel)
+    public function destroy(Artikel $artikel)
     {
         $this->authorize('delete', $artikel);
 

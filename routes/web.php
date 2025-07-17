@@ -18,14 +18,21 @@ Route::get('/about', function () {
 })->name('about');
 
 // dynamic pages - WIP
-Route::get('/galeri', function () {
-    return view('pages.galeri');
-})->name('galeri');
+Route::get(
+    '/galeri',
+    function () {
+        return view('pages.galeri');
+    }
+)->name('galeri.index');
 
 // dynamic pages - WIP
 Route::get('/artikel', function () {
     return view('pages.artikel');
 })->name('artikel');
+
+Route::get('/sejarah', function () {
+    return view('pages.sejarah');
+})->name('sejarah');
 
 Route::resource('artikel', ArtikelController::class);
 // Route::resource('galeri', GaleriController::class);

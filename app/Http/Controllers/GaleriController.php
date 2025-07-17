@@ -14,8 +14,9 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        $galeri = Galeri::latest()->paginate(10);
-        return view ('galeri.index', compact('galeri'));
+        $galeri = Galeri::where('status', 1)->latest()->paginate(12);
+        $totalGalleryWithPublicStatus = Galeri::where('status', 1)->count();
+        return view('pages.galeri', compact('galeri', 'totalGalleryWithPublicStatus'));
     }
 
     /**
@@ -103,7 +104,7 @@ class GaleriController extends Controller
     public function destroy(Galeri $galeri)
     {
         $this->authorize('delete', $galeri);
-        
+
         if ($galeri->file_path) {
             Storage::disk('public')->delete($galeri->file_path);
         }
