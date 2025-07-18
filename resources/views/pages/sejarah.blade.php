@@ -5,9 +5,9 @@
 
 @section('content')
     @livewire('components.header', [
-        'title' => '',
-        'subtitle' => '',
-        'imgPath' => asset(),
+        'title' => 'Sejarah Tari',
+        'subtitle' => 'Tarian tak hanya gerak, tapi kisah yang dituturkan turun-temurun',
+        'imgPath' => asset('assets/header-sejarah-tari.png'),
     ])
-    @
+    @livewire('kesenian.content-sejarah', ['html' => $html, 'slug' => $slug])
 @endsection()

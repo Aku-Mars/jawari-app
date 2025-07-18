@@ -18,25 +18,22 @@ Route::get('/about', function () {
 })->name('about');
 
 // dynamic pages - WIP
-Route::get(
-    '/galeri',
-    function () {
-        return view('pages.galeri');
-    }
-)->name('galeri.index');
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 
 // dynamic pages - WIP
 Route::get('/artikel', function () {
     return view('pages.artikel');
 })->name('artikel');
 
-Route::get('/sejarah', function () {
-    return view('pages.sejarah');
-})->name('sejarah');
+// Route::get('/sejarah', function () {
+//     return view('pages.sejarah');
+// })->name('sejarah');
+
+Route::get('/kesenian/{slug}', [KesenianController::class, 'show'])->name('kesenian.show');
 
 Route::resource('artikel', ArtikelController::class);
 // Route::resource('galeri', GaleriController::class);
-Route::resource('kesenian', KesenianController::class);
+// Route::resource('kesenian', KesenianController::class);
 Route::resource('users', UserController::class);
 
 Route::middleware('auth')->group(function () {
