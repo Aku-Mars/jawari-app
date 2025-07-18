@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    @apply font-display;
+  }
+}

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kesenian;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class KesenianController extends Controller
 {
@@ -65,9 +68,23 @@ class KesenianController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kesenian $kesenian)
+    public function show(string $slug)
     {
-        return view('kesenian.show', compact('kesenian'));
+        $path = resource_path("content/{$slug}.md");
+
+        if (!File::exists($path)) {
+            abort(404, 'Konten tidak ditemukan');
+        }
+
+        $markdown = File::get($path);
+        $html = (string) Markdown::convertToHtml($markdown);
+        $title = Str::of($slug)->replace('-', ' ')->title();
+
+        return view('pages.sejarah', [
+            'title' => $title,
+            'html' => $html,
+            'slug' => $slug,
+        ]);
     }
 
     /**
@@ -126,7 +143,7 @@ class KesenianController extends Controller
     public function destroy(Kesenian $kesenian)
     {
         $this->authorize('delete', $kesenian);
-        
+
         if ($kesenian->banner_image) {
             Storage::disk('public')->delete($kesenian->banner_image);
         }

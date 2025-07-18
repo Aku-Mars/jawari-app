@@ -2,7 +2,7 @@
     <img src="{{ asset($imgPath) }}" alt="{{ $title }}"
         class="absolute inset-0 w-full h-full object-cover object-center" />
 
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-70"></div>
 
     <div class="relative h-full flex items-center px-6 md:px-12 lg:px-24 xl:px-40 pb-16 font-display">
         <div class="text-white max-w-xl">

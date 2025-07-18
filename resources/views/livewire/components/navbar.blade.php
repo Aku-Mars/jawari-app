@@ -35,7 +35,7 @@
                 <ul
                     class="absolute left-0 mt-9 w-60 bg-white border rounded-md shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-200 ease-out z-50">
                     <li>
-                        <a href="{{ route('sejarah') }}"
+                        <a href="{{ route('kesenian.show', ['slug' => 'sejarah-tari-banten']) }}"
                             class="block  my-4 px-4 py-2 hover:bg-gray-100 hover:text-lowPrimary {{ $activeLink == 'Sejarah Tari' ? 'text-primary font-bold  pb-1' : '' }}"
                             wire:click="setActiveLink('Sejarah Tari')">
                             Sejarah Tari Banten
