@@ -3,6 +3,7 @@
 namespace App\Livewire\Components;
 
 use Livewire\Component;
+use App\Models\Kesenian;
 
 class Navbar extends Component
 {
@@ -15,6 +16,9 @@ class Navbar extends Component
 
     public function render()
     {
-        return view('livewire.components.navbar');
+        $kesenianSlugList = Kesenian::select('sub_judul')->get();
+        return view('livewire.components.navbar', [
+            'kesenianSlugList' => $kesenianSlugList
+        ]);
     }
 }

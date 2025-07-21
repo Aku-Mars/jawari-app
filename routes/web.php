@@ -12,15 +12,12 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-// static Pages - WIP
 Route::get('/about', function () {
     return view('pages.about');
 })->name('about');
 
-// dynamic pages - WIP
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 
-// dynamic pages - WIP
 Route::get('/artikel', function () {
     return view('pages.artikel');
 })->name('artikel');
@@ -29,7 +26,7 @@ Route::get('/artikel', function () {
 //     return view('pages.sejarah');
 // })->name('sejarah');
 
-Route::get('/kesenian/{slug}', [KesenianController::class, 'show'])->name('kesenian.show');
+Route::get('/kesenian/{sub_judul}', [KesenianController::class, 'show'])->name('kesenian.show');
 
 Route::resource('artikel', ArtikelController::class);
 // Route::resource('galeri', GaleriController::class);

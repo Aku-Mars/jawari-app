@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('sub_judul', 100);
             $table->integer('views')->default(0);
             $table->text('deskripsi');
-            $table->string('banner_image');
+            $table->string('banner_image')->nullable();
             $table->string('link_youtube')->nullable();
             $table->string('file_path')->nullable();
             $table->timestamps();

@@ -32,7 +32,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
-                <ul
+                {{-- <ul
                     class="absolute left-0 mt-9 w-60 bg-white border rounded-md shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-200 ease-out z-50">
                     <li>
                         <a href="{{ route('kesenian.show', ['slug' => 'sejarah-tari-banten']) }}"
@@ -62,9 +62,21 @@
                             Tari Bentang Banten
                         </a>
                     </li>
+                </ul> --}}
+                <ul
+                    class="absolute left-0 mt-9 w-60 bg-white border rounded-md shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-200 ease-out z-50">
+                    @foreach ($kesenianSlugList as $item)
+                        <li>
+                            <a href="{{ route('kesenian.show', ['sub_judul' => Str::slug($item->sub_judul)]) }}"
+                                class="block my-4 px-4 py-2 hover:bg-gray-100 hover:text-lowPrimary {{ $activeLink == $item->sub_judul ? 'text-primary font-bold pb-1' : '' }}"
+                                wire:click="setActiveLink('{{ $item->sub_judul }}')">
+                                {{ $item->sub_judul }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
-            </li>
 
+            </li>
             <li>
                 <a href="{{ route('galeri.index') }}" wire:click="setActiveLink('Galeri')"
                     class="hover:text-lowPrimary text-base {{ $activeLink == 'Galeri' ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'font-semibold' }}">
@@ -79,7 +91,6 @@
             </li>
         </ul>
 
-        <!-- Hamburger Button -->
         <div class="md:hidden">
             <button id="hamburgerBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
@@ -90,7 +101,6 @@
         </div>
     </div>
 
-    <!-- Sidebar Mobile -->
     <div id="sidebar"
         class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
         <div class="p-4 border-b flex justify-between items-center">
@@ -106,7 +116,6 @@
             <li><a href="#" class="text-base font-semibold hover:text-primary">Beranda</a></li>
             <li><a href="#tentang" class="text-base font-semibold hover:text-primary">Tentang Kami</a></li>
 
-            <!-- Dropdown Toggle Mobile -->
             <li>
                 <button id="toggleDropdownMobile"
                     class="text-base font-semibold hover:text-primary w-full text-left flex justify-between items-center">
@@ -119,10 +128,15 @@
                 </button>
                 <ul id="dropdownMobile"
                     class="mt-2 ml-2 space-y-2 hidden transform transition-all duration-300 ease-out origin-top">
-                    <li><a href="#sejarah" class="block px-4 py-1 hover:text-primary">Sejarah Tari Banten</a></li>
-                    <li><a href="#ringkang" class="block px-4 py-1 hover:text-primary">Tari Ringkang Jawari</a></li>
-                    <li><a href="#wajifamaliha" class="block px-4 py-1 hover:text-primary">Tari Wajifamaliha</a></li>
-                    <li><a href="#bentang" class="block px-4 py-1 hover:text-primary">Tari Bentang Banten</a></li>
+                    @foreach ($kesenianSlugList as $item)
+                        <li>
+                            <a href="{{ route('kesenian.show', ['sub_judul' => Str::slug($item->sub_judul)]) }}"
+                                class="block px-4 py-1 hover:text-primary"
+                                wire:click="setActiveLink('{{ $item->sub_judul }}')">
+                                {{ $item->sub_judul }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
 
