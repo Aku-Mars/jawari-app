@@ -55,4 +55,10 @@ class EditArtikel extends EditRecord
                 ->required(),
         ];
     }
+
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

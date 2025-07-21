@@ -13,6 +13,6 @@ class KesenianSeeder extends Seeder
     public function run(): void
     {
         // Create 10 kesenian items using the factory
-        Kesenian::factory()->count(10)->create();
+        Kesenian::factory()->count(4)->create();
     }
 }

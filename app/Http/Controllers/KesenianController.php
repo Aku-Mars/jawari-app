@@ -6,7 +6,6 @@ use App\Models\Kesenian;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -68,24 +67,22 @@ class KesenianController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(string $sub_judul)
     {
-        $path = resource_path("content/{$slug}.md");
+        // Ambil data kesenian sesuai slug sub_judul
+        $kesenian = Kesenian::get()->first(function ($item) use ($sub_judul) {
+            return Str::slug($item->sub_judul) === $sub_judul;
+        });
 
-        if (!File::exists($path)) {
-            abort(404, 'Konten tidak ditemukan');
+        if (!$kesenian) {
+            abort(404, 'Kesenian tidak ditemukan');
         }
 
-        $markdown = File::get($path);
-        $html = (string) Markdown::convertToHtml($markdown);
-        $title = Str::of($slug)->replace('-', ' ')->title();
+        $kesenian->deskripsi = Markdown::convertToHtml($kesenian->deskripsi)->getContent();
 
-        return view('pages.sejarah', [
-            'title' => $title,
-            'html' => $html,
-            'slug' => $slug,
-        ]);
+        return view('pages.kesenian-banten', compact('kesenian'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -54,4 +54,10 @@ class CreateArtikel extends CreateRecord
     {
         return true;
     }
+
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
