@@ -12,11 +12,19 @@ class GaleriController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         $galeri = Galeri::where('status', 1)->latest()->paginate(12);
-        $totalGalleryWithPublicStatus = Galeri::where('status', 1)->count();
-        return view('pages.galeri', compact('galeri', 'totalGalleryWithPublicStatus'));
+        return view('pages.galeri', compact('galeri'));
+    }
+
+    public function showInPage($id)
+    {
+        $galeri = Galeri::where('status', 1)->latest()->paginate(12);
+        $selectedGaleri = Galeri::findOrFail($id);
+
+        return view('pages.galeri', compact('galeri', 'selectedGaleri'));
     }
 
     /**

@@ -37,8 +37,8 @@
         </div>
 
         <div class="text-center mt-10">
-            <livewire:components.button label="selengkapnya" href="#" size="md" variant="primary"
-                class="py-3 px-8" />
+            <livewire:components.button label="selengkapnya" href="{{ route('galeri.index') }}" size="md"
+                variant="primary" class="py-3 px-8" />
         </div>
     </div>
 </section>

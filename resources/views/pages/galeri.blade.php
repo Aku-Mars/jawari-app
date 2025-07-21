@@ -9,5 +9,5 @@
         'subtitle' => 'Mengabadikan budaya lewat sorotan lensa',
         'imgPath' => asset('assets/header-gallery.png'),
     ])
-    @livewire('galeri.content')
-@endsection()
+    @livewire('galeri.content', ['selectedGaleri' => $selectedGaleri ?? null])
+@endsection
