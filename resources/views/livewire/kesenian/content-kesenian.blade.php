@@ -25,7 +25,7 @@
 
             <div
                 class="prose prose-sm md:prose-base lg:prose-lg max-w-none text-gray-800 leading-loose
-                prose-h2:font-display prose-h2:font-bold prose-h2:text-3xl prose-h2:my-3 prose-p:my-6">
+                prose-h2:font-diplay prose-h2:font-bold prose-h2:text-3xl prose-h2:my-3 prose-p:my-6">
                 {!! $deskripsi !!}
             </div>
         </div>

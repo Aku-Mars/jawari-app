@@ -8,4 +8,8 @@
   .prose h3 {
     @apply font-display;
   }
+
+  html {
+    @apply scroll-smooth;
+  }
 }

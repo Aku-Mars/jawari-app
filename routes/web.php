@@ -18,13 +18,11 @@ Route::get('/about', function () {
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 Route::get('/galeri/{id}', [GaleriController::class, 'showInPage'])->name('galeri.show');
 
-Route::get('/artikel', function () {
-    return view('pages.artikel');
-})->name('artikel');
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+Route::get('/artikel/{judul}', [ArtikelController::class, 'show'])->name('artikel.show');
 
 Route::get('/kesenian/{sub_judul}', [KesenianController::class, 'show'])->name('kesenian.show');
 
-Route::resource('artikel', ArtikelController::class);
 Route::resource('users', UserController::class);
 
 Route::middleware('auth')->group(function () {

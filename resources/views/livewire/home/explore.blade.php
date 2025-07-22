@@ -21,7 +21,7 @@
                     class="w-[320px] h-[320px] object-contain">
             </div>
 
-            <livewire:components.button label="Sejarah Kesenian" href="#" size="md" variant="primary"
-                class="py-3 px-8 absolute -bottom-3 -right-3" />
+            <livewire:components.button label="Sejarah Kesenian" href="{{ $slug ? url((string) $slug) : '#' }}"
+                size="md" variant="primary" class="py-3 px-8 absolute -bottom-3 -right-3" />
         </div>
 </section>

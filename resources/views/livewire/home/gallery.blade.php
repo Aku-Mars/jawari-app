@@ -7,33 +7,27 @@
             <p class="text-gray-600">Mengabadikan jejak budaya lewat sorotan lensa</p>
         </div>
 
+        @php
+            $chunks = $galeri->chunk(3);
+        @endphp
+
         <div class="grid gap-2">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                @foreach (['temp_article1.jpg', 'temp_article2.jpg', 'temp_article3.jpg'] as $image)
-                    <div class="overflow-hidden rounded-md">
-                        <img src="{{ asset('assets/temp/' . $image) }}" alt="Galeri Budaya"
-                            class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
-                    </div>
-                @endforeach
-            </div>
+            @foreach ($chunks as $chunk)
+                @php
+                    $columnCount = $loop->iteration === 2 ? 4 : 3;
+                    $gridCols = $columnCount === 4 ? 'sm:grid-cols-4 grid-cols-2' : 'sm:grid-cols-3 grid-cols-1';
+                @endphp
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                @foreach (['temp_article1.jpg', 'temp_article2.jpg', 'temp_article3.jpg', 'temp_article1.jpg'] as $image)
-                    <div class="overflow-hidden rounded-md">
-                        <img src="{{ asset('assets/temp/' . $image) }}" alt="Galeri Budaya"
-                            class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
-                    </div>
-                @endforeach
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                @foreach (['temp_article1.jpg', 'temp_article2.jpg', 'temp_article3.jpg'] as $image)
-                    <div class="overflow-hidden rounded-md">
-                        <img src="{{ asset('assets/temp/' . $image) }}" alt="Galeri Budaya"
-                            class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
-                    </div>
-                @endforeach
-            </div>
+                <div class="grid {{ $gridCols }} gap-2">
+                    @foreach ($chunk as $item)
+                        <div class="overflow-hidden rounded-md">
+                            <img src="{{ asset('storage/' . $item->file_path) }}"
+                                alt="{{ $item->deskripsi ?? 'Galeri Budaya' }}"
+                                class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
         </div>
 
         <div class="text-center mt-10">

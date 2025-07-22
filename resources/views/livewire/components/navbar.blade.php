@@ -5,7 +5,6 @@
             <img src="{{ asset('jawari-logo.png') }}" alt="Jawari Logo" class="h-12 md:h-16 mr-2" />
         </div>
 
-        <!-- Navigation Links -->
         <ul class="hidden md:flex space-x-8 items-center">
             <li>
                 <a href="{{ route('home') }}" wire:click="setActiveLink('Beranda')"
@@ -32,37 +31,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
-                {{-- <ul
-                    class="absolute left-0 mt-9 w-60 bg-white border rounded-md shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-200 ease-out z-50">
-                    <li>
-                        <a href="{{ route('kesenian.show', ['slug' => 'sejarah-tari-banten']) }}"
-                            class="block  my-4 px-4 py-2 hover:bg-gray-100 hover:text-lowPrimary {{ $activeLink == 'Sejarah Tari' ? 'text-primary font-bold  pb-1' : '' }}"
-                            wire:click="setActiveLink('Sejarah Tari')">
-                            Sejarah Tari Banten
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#ringkang"
-                            class="block  my-4 px-4 py-2 hover:bg-gray-100 hover:text-lowPrimary {{ $activeLink == 'Tari Ringkang Jawari' ? 'text-primary font-bold  pb-1' : '' }}"
-                            wire:click="setActiveLink('Tari Ringkang Jawari')">
-                            Tari Ringkang Jawari
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#walijamaliha"
-                            class="block  my-4 px-4 py-2 hover:bg-gray-100 hover:text-lowPrimary {{ $activeLink == 'Tari Walijamaliha' ? 'text-primary font-bold  pb-1' : '' }}"
-                            wire:click="setActiveLink('Tari Walijamaliha')">
-                            Tari Walijamaliha
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#bentang"
-                            class="block  my-4 px-4 py-2 hover:bg-gray-100 hover:text-lowPrimary {{ $activeLink == 'Tari Bentang Banten' ? 'text-primary font-bold  pb-1' : '' }}"
-                            wire:click="setActiveLink('Tari Bentang Banten')">
-                            Tari Bentang Banten
-                        </a>
-                    </li>
-                </ul> --}}
                 <ul
                     class="absolute left-0 mt-9 w-60 bg-white border rounded-md shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-200 ease-out z-50">
                     @foreach ($kesenianSlugList as $item)
@@ -84,7 +52,7 @@
                 </a>
             </li>
             <li>
-                <a href="#artikel" wire:click.prevent="setActiveLink('Artikel')"
+                <a href="{{ route('artikel.index') }}" wire:click="setActiveLink('Artikel')"
                     class="hover:text-lowPrimary text-base {{ $activeLink == 'Artikel' ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'font-semibold' }}">
                     Artikel
                 </a>
@@ -140,8 +108,10 @@
                 </ul>
             </li>
 
-            <li><a href="#galeri" class="text-base font-semibold hover:text-primary">Galeri</a></li>
-            <li><a href="#artikel" class="text-base font-semibold hover:text-primary">Artikel</a></li>
+            <li><a href="{{ route('galeri.index') }}" wire:click="setActiveLink('Galeri')"
+                    class="text-base font-semibold hover:text-primary">Galeri</a></li>
+            <li><a href="{{ route('artikel.index') }}" wire:click="setActiveLink('Artikel')"
+                    class="text-base font-semibold hover:text-primary">Artikel</a></li>
         </ul>
     </div>
 

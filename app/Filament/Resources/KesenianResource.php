@@ -22,6 +22,9 @@ class KesenianResource extends Resource
     protected static ?string $model = Kesenian::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Konten';
+    protected static ?string $pluralLabel = 'Kesenian';
+    protected static ?string $modelLabel = 'Kesenian';
 
     public static function form(Form $form): Form
     {

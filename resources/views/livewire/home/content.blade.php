@@ -1,11 +1,10 @@
-    <div class="container mx-auto p-8">
+    <div id="video-tari-ringkang" class="container mx-auto p-8">
         <div class="mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2 font-display">Tari Ringkang Jawari</h1>
             <p class="text-lg text-gray-600">Sebuah persembahan visual yang menggambarkan semangat dan warisan leluhur
             </p>
         </div>
 
-        {{-- Video Player --}}
         <div class="relative w-full max-w-4xl mx-auto bg-black rounded-2xl shadow-lg overflow-hidden mb-12">
             <div class="relative w-full pb-[56.25%] overflow-hidden">
                 <div id="player" class="absolute top-0 left-0 w-full h-full"></div>
