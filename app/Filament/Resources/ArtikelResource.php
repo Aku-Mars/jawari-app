@@ -6,13 +6,14 @@ use App\Filament\Resources\ArtikelResource\Pages;
 use App\Models\Artikel;
 use Filament\Resources\Resource;
 use Filament\Forms\Form;
-use Filament\Forms\Components\{TextInput, Textarea, FileUpload, Hidden};
+use Filament\Forms\Components\{TextInput, FileUpload, Hidden};
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\MarkdownEditor;
 
 class ArtikelResource extends Resource
 {
@@ -60,9 +61,10 @@ class ArtikelResource extends Resource
                     ->url()
                     ->nullable(),
 
-                Textarea::make('deskripsi')
-                    ->rows(5)
-                    ->required(),
+                MarkdownEditor::make('deskripsi')
+                    ->label('Deskripsi Artikel')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 

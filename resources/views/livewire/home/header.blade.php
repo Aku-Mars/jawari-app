@@ -12,8 +12,8 @@
             <p class="text-base md:text-xl mb-8">
                 Menelusuri makna dan keanggunan dalam setiap langkah tarian tradisional yang mempesona.
             </p>
-            <livewire:components.button label="Jelajahi Sekarang" href="#" size="lg" variant="primary"
-                class="py-3 px-8" />
+            <livewire:components.button label="Jelajahi Sekarang" href="#video-tari-ringkang" size="lg"
+                variant="primary" class="py-3 px-8" />
         </div>
     </div>
 </div>

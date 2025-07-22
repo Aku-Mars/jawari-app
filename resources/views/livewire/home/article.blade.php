@@ -11,7 +11,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
             @forelse ($articles as $article)
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden relative group">
+                <a href="{{ route('artikel.show', Str::slug($artikel->judul)) }}"
+                    class="bg-white rounded-2xl shadow-sm overflow-hidden relative group">
                     <div class="relative w-full h-48 overflow-hidden">
                         <img src="{{ $article->file_path ? asset('storage/' . $article->file_path) : asset('assets/article_placeholder.png') }}"
                             alt="{{ $article->judul }}"
@@ -26,7 +27,7 @@
                         </h3>
                         <p class="text-xs text-gray-500">{{ $article->created_at->format('d M Y') }}</p>
                     </div>
-                </div>
+                </a>
             @empty
                 <p class="text-gray-500 col-span-3 flex justify-center">Belum ada artikel.</p>
             @endforelse

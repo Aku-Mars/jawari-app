@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class ArtikelController extends Controller
 {
@@ -16,7 +18,7 @@ class ArtikelController extends Controller
     public function index()
     {
         $artikel = Artikel::latest()->paginate(10);
-        return view('artikel.index', compact('artikel'));
+        return view('pages.artikel', compact('artikel'));
     }
 
     /**
@@ -63,19 +65,29 @@ class ArtikelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Artikel $artikel)
+    public function show($judul)
     {
+        $artikel = Artikel::all()->first(function ($item) use ($judul) {
+            return Str::slug($item->judul) === $judul;
+        });
+
+        if (!$artikel) {
+            abort(404);
+        }
 
         $ip = request()->ip();
         $cacheKey = 'viewed_' . $artikel->id . '_' . $ip;
 
         if (!Cache::has($cacheKey)) {
             $artikel->increment('views');
-            // views bertambah setelah refresh 15 menit
             Cache::put($cacheKey, true, now()->addMinutes(15));
         }
 
-        return view('artikel.show', compact('artikel'));
+        $latest = Artikel::latest()->take(5)->get();
+
+        $artikel->deskripsi = Markdown::convertToHtml($artikel->deskripsi);
+
+        return view('pages.detail-artikel', compact('artikel', 'latest'));
     }
 
     /**
