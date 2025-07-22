@@ -7,26 +7,27 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', fn() => view('pages.home'))->name('home');
+Route::get('/about', fn() => view('pages.about'))->name('about');
 
-Route::get('/about', function () {
-    return view('pages.about');
-})->name('about');
+Route::prefix('galeri')->name('galeri.')->group(function () {
+    Route::get('/', [GaleriController::class, 'index'])->name('index');
+    Route::get('/{id}', [GaleriController::class, 'showInPage'])->name('show');
+});
 
-Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
-Route::get('/galeri/{id}', [GaleriController::class, 'showInPage'])->name('galeri.show');
-
-Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
-Route::get('/artikel/{judul}', [ArtikelController::class, 'show'])->name('artikel.show');
+Route::prefix('artikel')->name('artikel.')->group(function () {
+    Route::get('/', [ArtikelController::class, 'index'])->name('index');
+    Route::get('/{judul}', [ArtikelController::class, 'show'])->name('show');
+});
 
 Route::get('/kesenian/{sub_judul}', [KesenianController::class, 'show'])->name('kesenian.show');
 
 Route::resource('users', UserController::class);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    });
 });
