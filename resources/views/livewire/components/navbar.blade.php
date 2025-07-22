@@ -1,4 +1,4 @@
-<nav class="bg-white sticky top-0 z-50 shadow-md">
+<nav class="bg-white sticky top-0 z-50 transition-shadow duration-300 ease-in-out" id="navbar">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <!-- Logo -->
         <div class="flex items-center">
@@ -124,6 +124,7 @@
         const closeSidebar = document.getElementById('closeSidebar');
         const toggleDropdownMobile = document.getElementById('toggleDropdownMobile');
         const dropdownMobile = document.getElementById('dropdownMobile');
+        const navbar = document.getElementById('navbar');
 
         hamburgerBtn.addEventListener('click', () => {
             sidebar.classList.remove('-translate-x-full');
@@ -143,6 +144,14 @@
         toggleDropdownMobile.addEventListener('click', () => {
             dropdownMobile.classList.toggle('hidden');
             dropdownMobile.classList.toggle('scale-y-100');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
         });
     </script>
 </nav>
