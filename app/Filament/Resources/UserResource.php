@@ -11,6 +11,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
 
 
 class UserResource extends Resource
@@ -21,6 +22,11 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = 'Manajemen Pengguna';
     protected static ?string $modelLabel = 'Pengguna';
     protected static ?string $pluralLabel = 'Pengguna';
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasRole('Super Admin');
+    }
 
     public static function form(Form $form): Form
     {
@@ -40,10 +46,20 @@ class UserResource extends Resource
             TextInput::make('password')
                 ->label('Password')
                 ->password()
-                ->dehydrateStateUsing(fn($state) => filled($state) ? Hash::make($state) : null)
+                ->dehydrateStateUsing(fn($state) => Hash::make($state))
+                ->dehydrated(fn($state) => filled($state))
                 ->required(fn(string $context) => $context === 'create')
                 ->maxLength(255)
                 ->autocomplete('new-password'),
+
+            Select::make('roles')
+                ->multiple()
+                ->relationship('roles', 'name')
+                ->preload()
+                ->searchable()
+                ->required()
+                ->hidden(fn() => !auth()->user()->hasRole('Super Admin'))
+                ->disabled(fn($record) => auth()->user()->id === $record->id),
         ]);
     }
 
@@ -52,6 +68,7 @@ class UserResource extends Resource
         return $table->columns([
             TextColumn::make('name')->label('Nama')->searchable()->sortable(),
             TextColumn::make('email')->label('Email')->sortable(),
+            TextColumn::make('roles.name')->label('Peran')->badge(),
             TextColumn::make('created_at')->label('Dibuat')->dateTime('d M Y'),
         ])
             ->actions([

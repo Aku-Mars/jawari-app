@@ -143,4 +143,9 @@ class KesenianResource extends Resource
     {
         return 'Konten';
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasRole(['Super Admin', 'Admin']);
+    }
 }

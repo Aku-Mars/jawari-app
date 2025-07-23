@@ -13,7 +13,7 @@ class KesenianFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => \App\Models\User::where('email', 'admin@serangkab.go.id')->first()->id,
             'judul' => $this->faker->sentence,
             'sub_judul' => $this->faker->sentence,
             'deskripsi' => $this->faker->paragraph,
