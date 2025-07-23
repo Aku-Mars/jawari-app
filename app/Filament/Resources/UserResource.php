@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\Pages\{ListUsers, CreateUser, EditUser};
 use App\Models\User;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\{EditAction, DeleteAction, BulkActionGroup, DeleteBulkAction};
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\TextInput;
@@ -17,10 +17,10 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Manajemen Pengguna';
-    protected static ?string $modelLabel = 'User';
-    protected static ?string $pluralLabel = 'Users';
+    protected static ?string $modelLabel = 'Pengguna';
+    protected static ?string $pluralLabel = 'Pengguna';
 
     public static function form(Form $form): Form
     {
@@ -55,21 +55,27 @@ class UserResource extends Resource
             TextColumn::make('created_at')->label('Dibuat')->dateTime('d M Y'),
         ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make()->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus')
+                    ->modalHeading('Hapus Pengguna Ini?')
+                    ->modalDescription(fn($record) => 'Apakah kamu yakin ingin menghapus pengguna "' . $record->name . '"?')
+                    ->modalSubmitActionLabel('Ya, Hapus')
+                    ->modalCancelActionLabel('Batal'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()->label('Hapus Terpilih'),
+                ])->label('Aksi'),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'edit' => EditUser::route('/{record}/edit'),
         ];
     }
 }

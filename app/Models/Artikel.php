@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Str;
 
 class Artikel extends Model
 {
@@ -45,4 +44,3 @@ class Artikel extends Model
         return $this->belongsTo(User::class);
     }
 }
-

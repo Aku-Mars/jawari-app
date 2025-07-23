@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GaleriResource\Pages;
+use App\Filament\Resources\GaleriResource\Pages\{CreateGaleri, EditGaleri, ListGaleris};
 use App\Models\Galeri;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Columns\{TextColumn, ImageColumn, IconColumn};
 use Filament\Tables\Table;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\{EditAction, DeleteAction, BulkActionGroup, DeleteBulkAction};
 
 class GaleriResource extends Resource
 {
@@ -58,54 +59,57 @@ class GaleriResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('file_path')
+                ImageColumn::make('file_path')
                     ->label('Foto')
                     ->disk('public')
                     ->square()
                     ->width(80),
 
-                Tables\Columns\TextColumn::make('user.name')
+                TextColumn::make('user.name')
                     ->label('Pengguna')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('deskripsi')
+                TextColumn::make('deskripsi')
                     ->limit(30)
                     ->wrap(),
 
-                Tables\Columns\IconColumn::make('status')
+                IconColumn::make('status')
                     ->label('Publik')
                     ->boolean(),
 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime('d M Y H:i'),
             ])
             ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make()->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus')
+                    ->modalHeading('Hapus Galeri Ini?')
+                    ->modalDescription('Apakah and Yakin ingin menghapus galeri ini?')
+                    ->modalSubmitActionLabel('Ya, Hapus')
+                    ->modalCancelActionLabel('Batal'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()->label('Hapus Terpilih'),
+                ])->label('Aksi')
             ]);
     }
 
-
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGaleris::route('/'),
-            'create' => Pages\CreateGaleri::route('/create'),
-            'edit' => Pages\EditGaleri::route('/{record}/edit'),
+            'index' => ListGaleris::route('/'),
+            'create' => CreateGaleri::route('/create'),
+            'edit' => EditGaleri::route('/{record}/edit'),
         ];
     }
 }
