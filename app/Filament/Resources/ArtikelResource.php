@@ -2,15 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArtikelResource\Pages;
+use App\Filament\Resources\ArtikelResource\Pages\{CreateArtikel, EditArtikel, ListArtikels};
 use App\Models\Artikel;
 use Filament\Resources\Resource;
 use Filament\Forms\Form;
 use Filament\Forms\Components\{TextInput, FileUpload, Hidden};
-use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\{EditAction, DeleteBulkAction, BulkActionGroup, DEleteAction};
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\MarkdownEditor;
@@ -78,13 +76,18 @@ class ArtikelResource extends Resource
                 TextColumn::make('created_at')->dateTime()->label('Dibuat'),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus')
+                    ->modalHeading('Hapus Artikel Ini?')
+                    ->modalDescription(fn($record) => 'Apakah kamu yakin ingin menghapus artikel berjudul "' . $record->judul . '"?')
+                    ->modalSubmitActionLabel('Ya, Hapus')
+                    ->modalCancelActionLabel('Batal')
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()->label('Hapus Terpilih'),
+                ])->label('Aksi'),
             ])
             ->defaultSort('created_at', 'desc');
     }
@@ -97,9 +100,9 @@ class ArtikelResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArtikels::route('/'),
-            'create' => Pages\CreateArtikel::route('/create'),
-            'edit' => Pages\EditArtikel::route('/{record}/edit'),
+            'index' => ListArtikels::route('/'),
+            'create' => CreateArtikel::route('/create'),
+            'edit' => EditArtikel::route('/{record}/edit'),
         ];
     }
 

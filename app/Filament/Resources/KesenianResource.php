@@ -2,7 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KesenianResource\Pages;
+use App\Filament\Resources\KesenianResource\Pages\{
+    CreateKesenian,
+    EditKesenian,
+    ListKesenians
+};
 use App\Models\Kesenian;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,12 +20,13 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Radio;
 use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Actions\{EditAction, DeleteAction, BulkActionGroup, DeleteBulkAction};
 
 class KesenianResource extends Resource
 {
     protected static ?string $model = Kesenian::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
     protected static ?string $navigationGroup = 'Konten';
     protected static ?string $pluralLabel = 'Kesenian';
     protected static ?string $modelLabel = 'Kesenian';
@@ -88,31 +93,44 @@ class KesenianResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table->columns([
-            TextColumn::make('judul')->searchable(),
-            TextColumn::make('user.name')
-                ->label('Penulis')
-                ->sortable()
-                ->searchable(),
-            TextColumn::make('sub_judul'),
-            TextColumn::make('link_youtube')->label('Link Youtube'),
-            TextColumn::make('updated_at')->dateTime('d M Y H:i')->label('Diperbarui Pada')
-        ]);
+        return $table
+            ->columns([
+                TextColumn::make('judul')->searchable(),
+                TextColumn::make('user.name')
+                    ->label('Penulis')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('sub_judul'),
+                TextColumn::make('link_youtube')->label('Link Youtube'),
+                TextColumn::make('updated_at')->dateTime('d M Y H:i')->label('Diperbarui Pada')
+            ])
+            ->actions([
+                EditAction::make()->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus')
+                    ->modalHeading('Hapus Kesenian Banten Ini?')
+                    ->modalDescription('Apakah anda Yakin ingin menghapus Data Kesenian Banten ini?')
+                    ->modalSubmitActionLabel('Ya, Hapus')
+                    ->modalCancelActionLabel('Batal'),
+            ])
+            ->bulkActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()->label('Hapus Terpilih'),
+                ])->label('Aksi')
+            ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListKesenians::route('/'),
-            'create' => Pages\CreateKesenian::route('/create'),
-            'edit' => Pages\EditKesenian::route('/{record}/edit'),
+            'index' => ListKesenians::route('/'),
+            'create' => CreateKesenian::route('/create'),
+            'edit' => EditKesenian::route('/{record}/edit'),
         ];
     }
 

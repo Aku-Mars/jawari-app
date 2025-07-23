@@ -11,7 +11,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
             @forelse ($articles as $article)
-                <a href="{{ route('artikel.show', Str::slug($artikel->judul)) }}"
+                <a href="{{ route('artikel.show', Str::slug($article->judul)) }}"
                     class="bg-white rounded-2xl shadow-sm overflow-hidden relative group">
                     <div class="relative w-full h-48 overflow-hidden">
                         <img src="{{ $article->file_path ? asset('storage/' . $article->file_path) : asset('assets/article_placeholder.png') }}"

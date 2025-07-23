@@ -3,12 +3,13 @@
 namespace App\Filament\Resources\KesenianResource\Pages;
 
 use App\Filament\Resources\KesenianResource;
-use Filament\Actions;
+use Filament\Actions\{Action, DeleteAction};
 use Filament\Resources\Pages\EditRecord;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Js;
 
 class EditKesenian extends EditRecord
 {
@@ -17,8 +18,39 @@ class EditKesenian extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make()->label('Hapus Kesenian'),
         ];
+    }
+
+    public function getSubheading(): ?string
+    {
+        return 'Perbarui Kesenian untuk ' . $this->record->sub_judul;
+    }
+
+    protected function getSaveFormAction(): Action
+    {
+        return Action::make('save')
+            ->label('Perbarui Kesenian')
+            ->submit('save')
+            ->keyBindings(['mod+s']);
+    }
+
+    protected function getCancelFormAction(): Action
+    {
+        return Action::make('cancel')
+            ->label('Batalkan')
+            ->alpineClickHandler('document.referrer ? window.history.back() : (window.location.href = ' . Js::from($this->previousUrl ?? static::getResource()::getUrl()) . ')')
+            ->color('gray');
+    }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return 'Kesenian berhasil diperbarui';
+    }
+
+    public function getBreadcrumb(): string
+    {
+        return 'Edit Kesenian';
     }
 
     protected function getRedirectUrl(): string
