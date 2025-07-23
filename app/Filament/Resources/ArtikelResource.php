@@ -106,8 +106,8 @@ class ArtikelResource extends Resource
         ];
     }
 
-    public static function canViewAny(): bool
+    public static function canAccess(): bool
     {
-        return true;
+        return auth()->user()->hasRole(['Super Admin', 'Admin']);
     }
 }
