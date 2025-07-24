@@ -75,7 +75,7 @@ Kental nuansa keislaman dan adat Banten
 Busana sopan dan gerakan lembut
 Musik bernuansa qasidah atau zikir
 Fokus pada kesantunan dan ekspresi batin',
-            'banner_image' => 'gambar/jawari.webp', 
+            'banner_image' => 'gambar/galeri-12.webp', 
             'link_youtube' => 'https://youtu.be/gPvLCVv0gl4',
         ]);
 
@@ -90,7 +90,7 @@ Tari ini ditarikan secara berkelompok oleh para perempuan dengan gerakan yang le
 Tari Walijamaliha tidak sekadar pertunjukan estetika, melainkan menjadi bagian dari ekspresi keagamaan dan bentuk dakwah yang halus. Ia biasa ditampilkan dalam acara keagamaan, peringatan hari besar Islam, pengajian budaya, hingga sambutan tamu kehormatan di wilayah Lebak dan sekitarnya. Di balik setiap gerakan, terdapat ajakan untuk mengingat Tuhan, menghargai sesama, dan menjaga nilai-nilai kesederhanaan hidup.
 
 Tarian ini menjadi bukti bahwa di Banten, seni dan spiritualitas berjalan beriringan. Walau disampaikan dalam bentuk tari, maknanya sangat dalam dan menyentuh kalbu. Tari Walijamaliha adalah cermin kelembutan perempuan Banten yang menari bukan hanya untuk dilihat, tapi untuk dirasakan maknanya.',
-            'banner_image' => 'gambar/walijamaliha.webp', 
+            'banner_image' => 'gambar/gambar-1.webp', 
             'link_youtube' => 'https://youtu.be/ZZYYgzEFADM',
         ]);
 
@@ -116,7 +116,7 @@ Pemilihan warna merepresentasikan keberagaman alam dan spiritualitas masyarakat 
 Fungsi dan Peran Sosial
 Ditampilkan dalam acara budaya seperti penyambutan tamu agung, festival daerah, serta perayaan hari jadi kota dan upacara tradisional.
 Misi utamanya adalah menguatkan identitas budaya, mengajarkan nilai kerja sama, penghormatan, dan keselarasan masyarakat Banten.',
-            'banner_image' => 'gambar/bentang.webp', 
+            'banner_image' => 'gambar/galeri-8.webp', 
             'link_youtube' => 'https://youtu.be/0-5-MNmR8Uk',
         ]);
 

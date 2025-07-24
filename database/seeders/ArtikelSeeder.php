@@ -19,7 +19,7 @@ class ArtikelSeeder extends Seeder
             'judul' => 'Wisatawan Antusias Ikuti Workshop Tari Tradisional di Desa Wisata Cikolelet',
             'penulis' => 'Admin',
             'views' => 10,
-            'file_path' => 'gambar/tari.jpg',
+            'file_path' => 'gambar/galeri-1.webp',
             'link_youtube' => null,
             'deskripsi' => 'Tari Walijamaliha adalah salah satu tari tradisional khas Banten yang sarat makna religius dan filosofi hidup. Tarian ini berasal dari daerah Lebak, Banten Selatan, dan berkembang di kalangan masyarakat yang memadukan budaya lokal dengan nilai-nilai Islam. Nama “Walijamaliha” sendiri diyakini berasal dari kata-kata Arab: wali, jamal, dan ilahiyah, yang jika diartikan bebas menggambarkan seorang kekasih Tuhan yang memancarkan keindahan dan keluhuran spiritual.
 
@@ -35,7 +35,7 @@ Tarian ini menjadi bukti bahwa di Banten, seni dan spiritualitas berjalan beriri
             'judul' => 'Tarian Kreasi Baru dari Banten yang Terinspirasi dari Semangat Kepahlawanan',
             'penulis' => 'Admin',
             'views' => 50,
-            'file_path' => 'gambar/kreasi.jpg',
+            'file_path' => 'gambar/galeri-5.webp',
             'link_youtube' => null,
             'deskripsi' => 'Tarian ini merupakan hasil inovasi seni yang menggambarkan semangat kepahlawanan masyarakat Banten dalam balutan gerakan tari yang dinamis dan ekspresif. Para penari tampil memukau dengan kostum tradisional berwarna cerah, membawa alat musik tradisional seperti bedug besar yang menjadi simbol kekuatan dan keberanian. Pertunjukan ini diselenggarakan di atas panggung modern yang dilengkapi pencahayaan warna-warni, menambah suasana megah dan penuh energi.
 
