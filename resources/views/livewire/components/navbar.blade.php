@@ -38,7 +38,7 @@
                             <a href="{{ route('kesenian.show', ['sub_judul' => Str::slug($item->sub_judul)]) }}"
                                 class="block my-4 px-4 py-2 hover:bg-gray-100 hover:text-lowPrimary {{ $activeLink == $item->sub_judul ? 'text-primary font-bold pb-1' : '' }}"
                                 wire:click="setActiveLink('{{ $item->sub_judul }}')">
-                                {{ $item->sub_judul }}
+                                {{ $item->judul }}
                             </a>
                         </li>
                     @endforeach

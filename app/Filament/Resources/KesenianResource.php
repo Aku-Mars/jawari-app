@@ -47,14 +47,16 @@ class KesenianResource extends Resource
                 TextInput::make('judul')
                     ->required()
                     ->maxLength(100)
-                    ->live(onBlur: true)
+                    ->live(true)
                     ->afterStateUpdated(
                         fn($state, callable $set) =>
                         $set('sub_judul', Str::slug($state))
                     ),
                 TextInput::make('sub_judul')
-                    ->label('Slug (Sub Judul)')
+                    ->label('Sub Judul')
                     ->required()
+                    ->hidden()
+                    ->dehydrated()
                     ->maxLength(100),
             ]),
 
@@ -98,9 +100,15 @@ class KesenianResource extends Resource
                 TextColumn::make('judul')->searchable(),
                 TextColumn::make('user.name')
                     ->label('Penulis')
+                    ->badge()
+                    ->color(fn(string $state) => match ($state) {
+                        'Super Admin' => 'success',
+                        'Admin Bidang' => 'primary',
+                        'Admin' => 'warning',
+                        'Staf' => 'info',
+                    })
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('sub_judul'),
                 TextColumn::make('link_youtube')->label('Link Youtube'),
                 TextColumn::make('updated_at')->dateTime('d M Y H:i')->label('Diperbarui Pada')
             ])
@@ -146,6 +154,9 @@ class KesenianResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()->hasRole(['Super Admin', 'Admin']);
+        /** @var \App\Models\User|\Spatie\Permission\Traits\HasRoles $user */
+        $user = Auth::user();
+
+        return $user->hasRole(['Super Admin', 'Admin']);
     }
 }

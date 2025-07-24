@@ -16,7 +16,7 @@ class Navbar extends Component
 
     public function render()
     {
-        $kesenianSlugList = Kesenian::select('sub_judul')->get();
+        $kesenianSlugList = Kesenian::select('sub_judul', 'judul')->get();
         return view('livewire.components.navbar', [
             'kesenianSlugList' => $kesenianSlugList
         ]);

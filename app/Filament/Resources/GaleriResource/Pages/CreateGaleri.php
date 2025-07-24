@@ -36,7 +36,7 @@ class CreateGaleri extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Galeri berhasil dibuat';
+        return 'Galeri berhasil dibuat dan gambar dioptimasi';
     }
 
     protected function getCreateAnotherFormAction(): Action
@@ -58,34 +58,134 @@ class CreateGaleri extends CreateRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        if (isset($data['file_path']) && !filter_var($data['file_path'], FILTER_VALIDATE_URL)) {
-            $originalFilePath = storage_path('app/public/' . $data['file_path']);
-
-            if (Storage::disk('public')->exists($data['file_path'])) {
-                $filename = pathinfo($data['file_path'], PATHINFO_FILENAME);
-                $webpPath = 'galeri-files/' . $filename . '.webp';
-
-                $manager = new ImageManager(new Driver());
-                try {
-                    $image = $manager->read($originalFilePath)->toWebp(80);
-                    Storage::disk('public')->put($webpPath, (string) $image);
-
-                    Storage::disk('public')->delete($data['file_path']);
-
-                    $data['file_path'] = $webpPath;
-                } catch (\Exception $e) {
-                }
-            } else {
-            }
-        }
-
+        // Set user_id
         $data['user_id'] = Auth::id();
 
+        // Debug: Log data yang masuk
+        logger()->info('Data sebelum konversi:', $data);
+
+        // Konversi gambar ke WebP jika ada file yang diupload
+        if (isset($data['file_path']) && !empty($data['file_path'])) {
+            $originalPath = $data['file_path'];
+            $convertedPath = $this->convertToWebP($data['file_path']);
+
+            // Debug: Log hasil konversi
+            logger()->info("Konversi: {$originalPath} -> {$convertedPath}");
+
+            $data['file_path'] = $convertedPath;
+        }
+
+        // Debug: Log data setelah konversi
+        logger()->info('Data setelah konversi:', $data);
+
         return $data;
+    }
+
+
+    private function convertToWebP(string $filePath): string
+    {
+        // Log input
+        logger()->info("convertToWebP called with: {$filePath}");
+
+        // Skip jika sudah berupa URL atau sudah WebP
+        if (filter_var($filePath, FILTER_VALIDATE_URL)) {
+            logger()->info("Skipping URL: {$filePath}");
+            return $filePath;
+        }
+
+        $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        if ($extension === 'webp') {
+            logger()->info("Already WebP: {$filePath}");
+            return $filePath;
+        }
+
+        try {
+            // Cek apakah file exists
+            if (!Storage::disk('public')->exists($filePath)) {
+                logger()->error("File not found: {$filePath}");
+                return $filePath;
+            }
+
+            // Path file asli
+            $originalPath = storage_path('app/public/' . $filePath);
+            logger()->info("Original path: {$originalPath}");
+
+            // Generate nama file WebP
+            $pathInfo = pathinfo($filePath);
+            $filename = $pathInfo['filename'];
+            $directory = $pathInfo['dirname'];
+            $webpPath = ($directory !== '.' ? $directory . '/' : '') . $filename . '.webp';
+
+            logger()->info("Target WebP path: {$webpPath}");
+
+            // Pastikan direktori ada
+            $webpDirectory = dirname(storage_path('app/public/' . $webpPath));
+            if (!is_dir($webpDirectory)) {
+                mkdir($webpDirectory, 0755, true);
+                logger()->info("Created directory: {$webpDirectory}");
+            }
+
+            // Konversi gambar ke WebP
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($originalPath);
+
+            // Resize jika gambar terlalu besar (opsional)
+            $image = $image->scaleDown(1920, 1080);
+
+            // Konversi ke WebP dengan kualitas 85%
+            $webpImage = $image->toWebp(85);
+
+            // Simpan file WebP
+            Storage::disk('public')->put($webpPath, (string) $webpImage);
+            logger()->info("WebP file saved: {$webpPath}");
+
+            // Hapus file asli setelah konversi berhasil
+            if (Storage::disk('public')->exists($webpPath)) {
+                Storage::disk('public')->delete($filePath);
+                logger()->info("Original file deleted: {$filePath}");
+            }
+
+            logger()->info("Conversion successful: {$filePath} -> {$webpPath}");
+            return $webpPath;
+        } catch (\Exception $e) {
+            logger()->error("Failed to convert image to WebP: " . $e->getMessage(), [
+                'file_path' => $filePath,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return $filePath; // Return file asli jika gagal
+        }
     }
 
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+
+    /**
+     * Hook setelah record dibuat (backup method)
+     */
+    protected function afterSave(): void
+    {
+        $record = $this->getRecord();
+
+        if ($record && $record->file_path) {
+            $originalPath = $record->file_path;
+            $extension = strtolower(pathinfo($originalPath, PATHINFO_EXTENSION));
+
+            // Jika masih bukan WebP, konversi sekarang
+            if ($extension !== 'webp' && !filter_var($originalPath, FILTER_VALIDATE_URL)) {
+                logger()->info("afterSave: Converting {$originalPath} to WebP");
+
+                $webpPath = $this->convertToWebP($originalPath);
+
+                if ($webpPath !== $originalPath) {
+                    // Update database dengan path WebP
+                    $record->update(['file_path' => $webpPath]);
+                    logger()->info("afterSave: Database updated with WebP path: {$webpPath}");
+                }
+            }
+        }
     }
 }
