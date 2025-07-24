@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserResource extends Resource
@@ -23,13 +24,19 @@ class UserResource extends Resource
     protected static ?string $modelLabel = 'Pengguna';
     protected static ?string $pluralLabel = 'Pengguna';
 
+
     public static function canAccess(): bool
     {
-        return auth()->user()->hasRole('Super Admin');
+        /** @var \App\Models\User|\Spatie\Permission\Traits\HasRoles $user */
+        $user = Auth::user();
+        return $user->hasRole('Super Admin');
     }
 
     public static function form(Form $form): Form
     {
+        /** @var \App\Models\User|\Spatie\Permission\Traits\HasRoles $user */
+        $user = Auth::user();
+
         return $form->schema([
             TextInput::make('name')
                 ->label('Nama')
@@ -53,13 +60,12 @@ class UserResource extends Resource
                 ->autocomplete('new-password'),
 
             Select::make('roles')
-                ->multiple()
                 ->relationship('roles', 'name')
                 ->preload()
                 ->searchable()
                 ->required()
-                ->hidden(fn() => !auth()->user()->hasRole('Super Admin'))
-                ->disabled(fn($record) => auth()->user()->id === $record->id),
+                ->hidden(fn() => !$user->hasRole('Super Admin'))
+                ->disabled(fn($record) => $record && $user && $record->id === $user->id),
         ]);
     }
 
@@ -68,7 +74,15 @@ class UserResource extends Resource
         return $table->columns([
             TextColumn::make('name')->label('Nama')->searchable()->sortable(),
             TextColumn::make('email')->label('Email')->sortable(),
-            TextColumn::make('roles.name')->label('Peran')->badge(),
+            TextColumn::make('roles.name')
+                ->label('Peran')
+                ->badge()
+                ->color(fn(string $state) => match ($state) {
+                    'Super Admin' => 'success',
+                    'Admin Bidang' => 'primary',
+                    'Admin' => 'warning',
+                    'Staf' => 'info',
+                }),
             TextColumn::make('created_at')->label('Dibuat')->dateTime('d M Y'),
         ])
             ->actions([

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Drivers\Gd\Driver;
 use Filament\Actions\Action;
 use Illuminate\Support\Js;
+use Illuminate\Support\Str;
 
 
 class CreateKesenian extends CreateRecord
@@ -85,5 +86,11 @@ class CreateKesenian extends CreateRecord
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['sub_judul'] = Str::slug($data['judul'] ?? '');
+        return $data;
     }
 }

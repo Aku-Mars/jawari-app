@@ -39,11 +39,6 @@ class ArtikelResource extends Resource
                     ->maxLength(100)
                     ->required(),
 
-                TextInput::make('views')
-                    ->numeric()
-                    ->default(0)
-                    ->required(),
-
                 FileUpload::make('file_path')
                     ->label('Lampiran Gambar atau Video')
                     ->directory('artikel-files')
@@ -108,6 +103,9 @@ class ArtikelResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()->hasRole(['Super Admin', 'Admin']);
+        /** @var \App\Models\User|\Spatie\Permission\Traits\HasRoles $user */
+        $user = Auth::user();
+
+        return $user->hasRole(['Super Admin', 'Admin']);
     }
 }
