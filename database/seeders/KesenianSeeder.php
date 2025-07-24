@@ -12,7 +12,32 @@ class KesenianSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 10 kesenian items using the factory
-        Kesenian::factory()->count(4)->create();
+        $adminUserId = \App\Models\User::where('email', 'admin@serangkab.go.id')->first()->id;
+
+        Kesenian::create([
+            'user_id' => $adminUserId,
+            'judul' => 'Sejarah Tari',
+            'sub_judul' => 'Tarian tak hanya gerak, tapi kisah yang dituturkan turun-temurun',
+            'deskripsi' => 'Provinsi Banten tak hanya kaya akan destinasi alam dan religi, tetapi juga memiliki warisan budaya yang sangat menarik untuk dijelajahi—salah satunya adalah seni tari tradisionalnya. Tarian-tarian ini sudah ada sejak zaman Kesultanan Banten dan menjadi bagian penting dari kehidupan masyarakat, baik dalam kegiatan adat, upacara spiritual, hingga pertunjukan hiburan rakyat. Melalui tari, masyarakat Banten mengekspresikan rasa syukur, nasihat hidup, hingga cerita-cerita turun-temurun.
+
+Setiap gerakan dalam tari tradisional Banten bukan hanya indah dipandang, tetapi juga sarat makna. Misalnya, Tari Topeng menampilkan tokoh-tokoh legenda dengan ekspresi yang kuat melalui topeng kayu berwarna. Tari Walijamaliha, sebaliknya, bergerak lebih lembut dan mendalam, karena berasal dari tradisi keagamaan yang mengajarkan nilai spiritual dan ketenangan batin. Tak kalah unik, Tari Bendrong Lesung menggunakan alat tumbuk padi (lesung) sebagai alat musik iringan, menampilkan semangat gotong royong masyarakat desa.
+
+Sebagai wisatawan, menyaksikan tarian ini secara langsung memberi pengalaman yang berbeda. Anda tidak hanya menonton sebuah pertunjukan, tetapi ikut merasakan suasana budaya yang hidup. Banyak sanggar seni di Banten yang terbuka untuk pengunjung, bahkan beberapa menyediakan sesi pelatihan singkat bagi wisatawan yang ingin belajar langsung gerakan dasar tarian tradisional.
+
+Tarian-tarian ini biasanya dipertunjukkan dalam festival daerah, acara penyambutan tamu, atau pada perayaan adat dan keagamaan. Saat berkunjung ke Banten, sempatkan waktu untuk menyaksikan penampilan seni tradisional ini—baik di kota Serang, Pandeglang, maupun kawasan wisata budaya lainnya. Ini adalah kesempatan langka untuk melihat langsung bagaimana nilai-nilai lokal dijaga melalui seni yang penuh harmoni.
+
+Melalui pelestarian seni tari, masyarakat Banten menunjukkan bahwa budaya bukanlah sesuatu yang statis, tapi tumbuh bersama zaman. Bagi Anda yang ingin mengenal Banten lebih dalam, tarian tradisionalnya adalah gerbang yang memukau—sebuah cara untuk memahami jiwa masyarakat lokal tanpa perlu banyak kata. Sebab di sini, budaya benar-benar bisa berbicara lewat gerakan.',
+            'banner_image' => null,
+            'link_youtube' => null,
+        ]);
+
+        Kesenian::create([
+            'user_id' => $adminUserId,
+            'judul' => 'Alat Musik Tradisional B',
+            'sub_judul' => 'alat-musik-tradisional-b',
+            'deskripsi' => 'Deskripsi lengkap tentang Alat Musik Tradisional B. Alat musik ini terbuat dari bahan Y dan dimainkan dengan cara Z.',
+            'banner_image' => 'https://via.placeholder.com/640x480.png/224400?text=Kesenian+2', // Ganti dengan path gambar yang sebenarnya
+            'link_youtube' => null,
+        ]);
     }
 }

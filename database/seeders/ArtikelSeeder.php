@@ -12,7 +12,26 @@ class ArtikelSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 20 articles using the factory
-        Artikel::factory()->count(20)->create();
+        $adminUserId = \App\Models\User::where('email', 'admin@serangkab.go.id')->first()->id;
+
+        Artikel::create([
+            'user_id' => $adminUserId,
+            'judul' => 'Contoh Artikel Pertama',
+            'penulis' => 'Admin Jawari',
+            'views' => 100,
+            'file_path' => null,
+            'link_youtube' => null,
+            'deskripsi' => 'Ini adalah deskripsi untuk contoh artikel pertama. Anda bisa mengganti ini dengan konten artikel yang lebih panjang.',
+        ]);
+
+        Artikel::create([
+            'user_id' => $adminUserId,
+            'judul' => 'Contoh Artikel Kedua',
+            'penulis' => 'Admin Jawari',
+            'views' => 50,
+            'file_path' => null,
+            'link_youtube' => 'https://www.youtube.com/watch?v=example2',
+            'deskripsi' => 'Ini adalah deskripsi untuk contoh artikel kedua. Anda bisa menambahkan lebih banyak artikel dengan pola yang sama.',
+        ]);
     }
 }

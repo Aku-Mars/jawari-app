@@ -12,7 +12,20 @@ class GaleriSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 15 gallery items using the factory
-        Galeri::factory()->count(15)->create();
+        $adminUserId = \App\Models\User::where('email', 'admin@serangkab.go.id')->first()->id;
+
+        Galeri::create([
+            'user_id' => $adminUserId,
+            'file_path' => 'galeri-images/galeri_contoh_1.jpg', // Path relatif dari storage/app/public
+            'deskripsi' => 'Foto pemandangan indah dari pegunungan yang diunggah dari lokal.',
+            'status' => true,
+        ]);
+
+        Galeri::create([
+            'user_id' => $adminUserId,
+            'file_path' => 'galeri-images/galeri_contoh_2.png', // Path relatif dari storage/app/public
+            'deskripsi' => 'Acara budaya lokal yang meriah, diunggah dari lokal.',
+            'status' => true,
+        ]);
     }
 }
