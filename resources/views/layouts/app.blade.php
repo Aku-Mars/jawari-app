@@ -2,10 +2,17 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- Meta tag --}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website JAWARI – Kesenian, Galeri, Artikel dan Budaya Lokal">
+    <meta name="keywords"
+        content="tarian banten, banten, serang, tangerang, cilegon, jawari, budaya, kesenian, galeri, artikel, lokal">
+    <meta name="author" content="Diskominfosatik Kab. Serang">
 
     <title>@yield('title', 'JAWARI')</title>
+
+    <link rel="icon" href="{{ asset('jawari-logo.png') }}" type="image/png">
 
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +20,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap"
         rel="stylesheet">
-
-    <link rel="icon" href="{{ asset('jawari-logo.png') }}" type="image/png">
 
     {{-- Styles / Scripts --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])

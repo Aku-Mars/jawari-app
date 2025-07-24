@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->string('judul', 100);
             $table->string('penulis', 100);
-            $table->integer('views');
+            $table->integer('views')->default(0);
             $table->string('file_path')->nullable();
             $table->string('link_youtube')->nullable();
             $table->text('deskripsi');

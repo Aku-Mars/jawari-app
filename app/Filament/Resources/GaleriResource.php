@@ -13,6 +13,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Actions\{EditAction, DeleteAction, BulkActionGroup, DeleteBulkAction};
+use Illuminate\Support\Facades\Auth;
 
 class GaleriResource extends Resource
 {
@@ -36,8 +37,10 @@ class GaleriResource extends Resource
 
                 FileUpload::make('file_path')
                     ->label('Foto Galeri')
+                    ->disk('public')
                     ->directory('galeri-files')
                     ->preserveFilenames()
+                    ->visibility('public')
                     ->image()
                     ->imageEditor()
                     ->maxSize(2048)
@@ -63,11 +66,19 @@ class GaleriResource extends Resource
                     ->label('Foto')
                     ->disk('public')
                     ->square()
+                    ->visibility('public')
                     ->width(80),
 
                 TextColumn::make('user.name')
                     ->label('Pengguna')
                     ->searchable()
+                    ->badge()
+                    ->color(fn(string $state) => match ($state) {
+                        'Super Admin' => 'success',
+                        'Admin Bidang' => 'primary',
+                        'Admin' => 'warning',
+                        'Staf' => 'info',
+                    })
                     ->sortable(),
 
                 TextColumn::make('deskripsi')
@@ -115,6 +126,9 @@ class GaleriResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()->hasRole(['Super Admin', 'Admin']);
+        /** @var \App\Models\User|\Spatie\Permission\Traits\HasRoles $user */
+        $user = Auth::user();
+
+        return $user->hasRole(['Super Admin', 'Admin']);
     }
 }
