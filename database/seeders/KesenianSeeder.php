@@ -90,7 +90,7 @@ Tari ini ditarikan secara berkelompok oleh para perempuan dengan gerakan yang le
 Tari Walijamaliha tidak sekadar pertunjukan estetika, melainkan menjadi bagian dari ekspresi keagamaan dan bentuk dakwah yang halus. Ia biasa ditampilkan dalam acara keagamaan, peringatan hari besar Islam, pengajian budaya, hingga sambutan tamu kehormatan di wilayah Lebak dan sekitarnya. Di balik setiap gerakan, terdapat ajakan untuk mengingat Tuhan, menghargai sesama, dan menjaga nilai-nilai kesederhanaan hidup.
 
 Tarian ini menjadi bukti bahwa di Banten, seni dan spiritualitas berjalan beriringan. Walau disampaikan dalam bentuk tari, maknanya sangat dalam dan menyentuh kalbu. Tari Walijamaliha adalah cermin kelembutan perempuan Banten yang menari bukan hanya untuk dilihat, tapi untuk dirasakan maknanya.',
-            'banner_image' => 'gambar/gambar-1.webp', 
+            'banner_image' => 'gambar/galeri-1.webp', 
             'link_youtube' => 'https://youtu.be/ZZYYgzEFADM',
         ]);
 
