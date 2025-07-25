@@ -39,42 +39,42 @@ Melalui pelestarian seni tari, masyarakat Banten menunjukkan bahwa budaya bukanl
 
 Tari ini berkembang seiring penyebaran agama Islam di tanah Banten, khususnya melalui peran para ulama dan pesantren. Tari Jawari kerap ditampilkan dalam kegiatan maulid Nabi, perayaan hari besar Islam, dan kegiatan tradisional masyarakat yang bernuansa religius.
 
-Makna dan Filosofi :
+**Makna dan Filosofi :**
 Tari Jawari menggambarkan kesopanan, kelembutan, dan keanggunan perempuan Muslimah. Gerakannya yang lembut dan tertutup mencerminkan akhlak mulia, ketundukan kepada Tuhan, serta rasa syukur.
 Tarian ini juga mencerminkan keseimbangan antara seni dan spiritualitas, serta menunjukkan bahwa ekspresi seni bisa dilakukan tanpa melanggar norma agama dan kesopanan.
 
-Iringan Musik :
+**Iringan Musik :**
 Tari Jawari diiringi oleh musik rebana dan syair-syair islami, seperti pujian kepada Nabi Muhammad SAW, zikir, atau syair bernuansa dakwah. Alat musik yang digunakan biasanya:
-Terbang (rebana besar)
-Marawis
-Kadang disertai vokal atau lantunan qasidah
+* Terbang (rebana besar)
+* Marawis
+* Kadang disertai vokal atau lantunan qasidah
 Iringan musik ini memperkuat suasana khusyuk, sakral, dan syahdu dari penampilan tariannya.
 
-Busana Penari :
+**Busana Penari :**
 Penari Jawari mengenakan busana yang tertutup dan sopan, biasanya berupa:
-Baju kurung panjang
-Sarung/kain batik
-Kerudung atau selendang
-Warna-warna yang digunakan umumnya lembut dan elegan, seperti putih, ungu, merah marun, atau hijau tua.
+* Baju kurung panjang
+* Sarung/kain batik
+* Kerudung atau selendang
+* Warna-warna yang digunakan umumnya lembut dan elegan, seperti putih, ungu, merah marun, atau hijau tua.
 Kostum ini memperkuat citra keanggunan dan kesantunan wanita muslimah.
 
-Formasi & Jumlah Penari :
+**Formasi & Jumlah Penari :**
 Tari Jawari biasanya ditarikan oleh 3 sampai 5 penari perempuan, dengan formasi simetris. Gerakannya bersifat:
-Lemah gemulai
-Dominan pada gerakan tangan dan kaki yang teratur
-Minim lompatan atau hentakan keras, karena lebih mengedepankan keharmonisan dan kekhusyukan
+* Lemah gemulai
+* Dominan pada gerakan tangan dan kaki yang teratur
+* Minim lompatan atau hentakan keras, karena lebih mengedepankan keharmonisan dan kekhusyukan
 
-Fungsi & Konteks Pentas :
+**Fungsi & Konteks Pentas :**
 Tari Jawari bukan sekadar hiburan, tapi punya fungsi sosial dan religius:
-Sebagai bentuk penghormatan pada acara keagamaan
-Sebagai sarana dakwah dan penyebaran nilai-nilai Islam
-Penegas bahwa seni dan agama bisa saling mengisi
+* Sebagai bentuk penghormatan pada acara keagamaan
+* Sebagai sarana dakwah dan penyebaran nilai-nilai Islam
+* Penegas bahwa seni dan agama bisa saling mengisi
 
-Ciri Khas Tari Jawari:
-Kental nuansa keislaman dan adat Banten
-Busana sopan dan gerakan lembut
-Musik bernuansa qasidah atau zikir
-Fokus pada kesantunan dan ekspresi batin',
+**Ciri Khas Tari Jawari:**
+* Kental nuansa keislaman dan adat Banten
+* Busana sopan dan gerakan lembut
+* Musik bernuansa qasidah atau zikir
+* Fokus pada kesantunan dan ekspresi batin',
             'banner_image' => 'gambar/galeri-12.webp', 
             'link_youtube' => 'https://youtu.be/gPvLCVv0gl4',
         ]);
@@ -101,21 +101,21 @@ Tarian ini menjadi bukti bahwa di Banten, seni dan spiritualitas berjalan beriri
             'deskripsi' => 'Tari Bentang Banten adalah tarian tradisional kreasi modern dari Provinsi Banten, yang diciptakan oleh pasangan Beni Kusnandar dan Wiwin Purwinarti dari Sanggar Wanda Banten. Nama "Bentang" merujuk pada kain tradisional Banten, sekaligus simbol kehidupan sehari-hari dan kesejahteraan masyarakat setempat
 
 Asal dan Filosofi
-Tarian ini menggambarkan harmoni antara manusia, alam, dan Sang Pencipta, melambangkan pentingnya keseimbangan dalam kehidupan.
-Bentang awalnya digunakan dalam upacara adat, permohonan keberkahan, dan penyambutan tamu penting di komunitas setempat
+* Tarian ini menggambarkan harmoni antara manusia, alam, dan Sang Pencipta, melambangkan pentingnya keseimbangan dalam kehidupan.
+* Bentang awalnya digunakan dalam upacara adat, permohonan keberkahan, dan penyambutan tamu penting di komunitas setempat
 
 Gerakan dan Irama
-Diawali dengan gerakan lambat yang menggambarkan ketenangan, berlanjut ke tempo yang lebih semarak—menciptakan narasi visual yang dinamis.
-Gerakan tangan dan kaki yang bervariasi melambangkan kerja sama, kompak, dan aliran kehidupan manusia seperti air mengalir bantenlife.com.
-Sering disebut: “flowing like water,” menandakan keindahan dan keselarasan dalam gerak
+* Diawali dengan gerakan lambat yang menggambarkan ketenangan, berlanjut ke tempo yang lebih semarak—menciptakan narasi visual yang dinamis.
+* Gerakan tangan dan kaki yang bervariasi melambangkan kerja sama, kompak, dan aliran kehidupan manusia seperti air mengalir bantenlife.com.
+* Sering disebut: “flowing like water,” menandakan keindahan dan keselarasan dalam gerak
 
 Kostum dan Properti
-Penari mengenakan kain tradisional Banten berwarna cerah, selendang, dan aksesoris kepala khas daerah.
-Pemilihan warna merepresentasikan keberagaman alam dan spiritualitas masyarakat Banten, serta menunjukkan keceriaan dan keharmonisan.
+* Penari mengenakan kain tradisional Banten berwarna cerah, selendang, dan aksesoris kepala khas daerah.
+* Pemilihan warna merepresentasikan keberagaman alam dan spiritualitas masyarakat Banten, serta menunjukkan keceriaan dan keharmonisan.
 
 Fungsi dan Peran Sosial
-Ditampilkan dalam acara budaya seperti penyambutan tamu agung, festival daerah, serta perayaan hari jadi kota dan upacara tradisional.
-Misi utamanya adalah menguatkan identitas budaya, mengajarkan nilai kerja sama, penghormatan, dan keselarasan masyarakat Banten.',
+* Ditampilkan dalam acara budaya seperti penyambutan tamu agung, festival daerah, serta perayaan hari jadi kota dan upacara tradisional.
+* Misi utamanya adalah menguatkan identitas budaya, mengajarkan nilai kerja sama, penghormatan, dan keselarasan masyarakat Banten.',
             'banner_image' => 'gambar/galeri-8.webp', 
             'link_youtube' => 'https://youtu.be/0-5-MNmR8Uk',
         ]);
